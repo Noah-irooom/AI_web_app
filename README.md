@@ -9,7 +9,7 @@
 - $ docker ps -a  : 구성된 이미지 확인하기
 - $ docker run -it -p 8080:8080 --name ubuntu1 ubuntu
   - 웹 전용 포트인 8080 또는 80으로 띄워야함.
-- ctrl + Q 또는 ctrl + P :  이미지 나가기
+- \# exit :  이미지 나가기
 
 0.2. 도커 재시작하기
 - $ docker start ubuntu1
@@ -21,11 +21,15 @@
 - \# apt install apache2 : 실습할 아파치 설치
 - \# service apache2 start  : 아파치 시작하기
 
-## 1.Tensorflow 공식홈페이지 자바스크리트용 https://www.tensorflow.org/js/?hl=ko 참조
-  
-1-1) CNN mnist 손글씨 숫자인식 예제
-- 먼저
+0.4 그외 도커 사용법
+- cat /etc/issue  :  ubuntu 버전 확인
+  - 20.04.2 LTS면 톰캣 보다는 아파치로 실습하는게 나을 듯. 
+- $ docker rm -f ubuntu2 :  이미지 없애기
 
-1.1.2. 
+
+## 1. CNN mnist 손글씨 숫자인식 예제
+- Tensorflow 공식홈페이지 자바스크리트용 https://www.tensorflow.org/js/?hl=ko 참조
+  
+1.1. 
   
   
