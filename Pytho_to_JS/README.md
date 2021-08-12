@@ -1,71 +1,45 @@
-# AI_web_app
+# Convert pretrained model with python to JS version
 
-모바일앱 및 웹에서의 Tensorflow.js 구현
+## Tensorflow.js in Node (node.js)
+### 1. Simple train code with python in colab
+- https://www.tensorflow.org/tutorials/quickstart/beginner?hl=ko 참고
+- 해당 페이지의 코랩환경에 들어가서  mnist 데이터로 간단한 모델을 학습시킨다.
+- 코랩 ipynb파일은 현 디렉토리에 업로드 되어있다.
+- Output으로 sample.h5 모델이 저장되는 이를 다운로드한다.
 
-## 0.docker 설치 및 실행
+### 2. Convert python model to Javascript model
+- !mkdir sample : sample 폴더 생성하기
+- !pip3 install tensorflowjs
+- !tensorflowjs_converter --input_format keras  sample.h5  sample
+  - sample.h5모델을 변환하여 sample 디렉토리에 저장하겠다.
+  - 아웃풋으로는 group1-shard1of1.bin,  model.json 파일이 저장됨.
+  - 즉 모델이 JSON형식으로 변환되어 저장됨.
 
-0.1. 도커시작하기
-- docker 설치후 cmd 열어서 root디렉토리로 이동
-- $ docker ps -a  : 구성된 이미지 확인하기
-- $ docker run -it -p 80:80 -p 8080:8080 --name ubuntu1 ubuntu
-  - 아파치는 포트 80으로 띄워야함.
-- \# exit :  이미지 나가기
+### 3. Docker settings
+- 3.1. 이제 도커를 실행한다. 단, 포트포워딩이 된 도커를 실행.
+  - docker start ubuntu1
+  - docker exec -it ubuntu1 bash
+- 3.2. 기타 세팅 맞추기
+  - apt update
+  - apt install nodejs
+  - apt install npm
+  - npm install -g typescript
+- 3.3. mkdir sample; cd sample  :  sample 디렉토리 생성후 들어가기
+- 3.4. npm init -y
+  - package.json 생성됨
+- 3.5. npm install -g @tensorflow/tfjs  
+  - node_modules 생성됨
+  - 단, node.js를 실행할 땐, apache가 정지되어 있어야함. 포트가 겹칠 수 있기 때문. 물론 반대도 마찬가지.
+    - service apache2 stop
 
-0.2. 도커 재시작하기
-- $ docker start ubuntu1
-- $ docker attach ubuntu1 또는 $ docker exec -it ubuntu1 bash
+### 4. Load Model
+- https://www.tensorflow.org/js/guide/nodejs?hl=ko 참고
+- 4.1. nano sample.js : 생성하여 위 링크 코드 작성
+  - 단, 현재(2021.08.12)기준으로 공식 문서 코드가 오류가 뜸.
+    - import * as tf from '@tensorflow/tfjs-node' 대신에  const tf = require('@tensorflow/tfjs') 사용
+    - // callbacks: tf.node.tensorBoard('/tmp/fit_logs_1') : 텐서보드 콜백은 일단 주석처리하여 실행
 
-0.3. 도커에 기타 패키지 설치
-- \# apt update : 먼저 업데이트해줘야 다음이 실행됨
-- \# apt install nano : 편집기 설치
-- \# apt install apache2 : 실습할 아파치 설치
-- \# service apache2 start  : 아파치 서버 시작하기
-- \# service apache2 stop : 아파치 서버 정지시키기
+- 4.2. node sample.js 로 실행하기.
 
-0.4 그외 도커 사용법
-- cat /etc/issue  :  ubuntu 버전 확인
-  - 20.04.2 LTS면 톰캣 보다는 아파치로 실습하는게 나을 듯. 
-- $ docker rm -f ubuntu2 :  이미지 없애기
-- 도커 완전 삭제 후 재설치
-  - 프로그램 추가/제거에서 Docker Desktop installer제거
-  - Program Files/Docker 폴더 삭제후 재설치
-  - /User/user/AppData/Roaming/Docker 폴더 제거
-    - Docker failed to initialize 해결법 아래 참고
-    - https://stackoverflow.com/questions/68096476/docker-failed-to-initialize-on-windows 참고
-
-
-## 1. CNN mnist 손글씨 숫자인식 예제
-- Tensorflow 공식홈페이지 자바스크리트용 https://www.tensorflow.org/js/?hl=ko 참조
   
-1.1. docker 이미지 시작 후 해당 디렉토리로 이동
-- $ docker start ubuntu1
-- $ docker exec -it ubuntu1 bash
-- \# cd /var/www/html
 
-1.2. sample.html 생성후 코드 복붙
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#1 참고
-- 해당 페이지에 index.html 코드 내용을 우리 sample.html에 복사하여 붙여넣기
-  - \# nano sample.html
-
-1.3. data.js 생성 후 코드 복붙
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#1 
-- 위 링크에서 data.js 링크를 타고 들어가 코드 복사하여 붙여넣기
-  - \# nano data.js 
-
-1.4. script.js 생성 후 코드 복붙
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#2 참고
-- 해당 페이지의 script.js 코드를 복사하여 붙여넣기
-  - \# nano script.js
-- 그 후 service apache2 start하여 http://127.0.0.1/sample.html 접속하여 확인
-
-1.5. script.js에 모델 아키텍쳐 코드 추가
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#4 참고
-
-1.6. script.js에 학습 함수 생성 코드 추가 및 실행
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#5
-- http://127.0.0.1/sample.html 페이지 새로고침 하면 학습이 진행됨.
-
-1.7. script.js에 모델 평가 함수 생성 코드 추가 및 실행
-- https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html?hl=ko#6
-- http://127.0.0.1/sample.html 페이지 새로고침 하면 학습후 평가 진행
-  
