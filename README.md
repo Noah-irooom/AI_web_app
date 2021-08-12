@@ -25,6 +25,12 @@
 - cat /etc/issue  :  ubuntu 버전 확인
   - 20.04.2 LTS면 톰캣 보다는 아파치로 실습하는게 나을 듯. 
 - $ docker rm -f ubuntu2 :  이미지 없애기
+- 도커 완전 삭제 후 재설치
+  - 프로그램 추가/제거에서 Docker Desktop installer제거
+  - Program Files/Docker 폴더 삭제후 재설치
+  - /User/user/AppData/Roaming/Docker 폴더 제거
+    - Docker failed to initialize 해결법 아래 참고
+    - https://stackoverflow.com/questions/68096476/docker-failed-to-initialize-on-windows 참고
 
 
 ## 1. CNN mnist 손글씨 숫자인식 예제
