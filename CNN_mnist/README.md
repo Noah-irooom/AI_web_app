@@ -13,7 +13,8 @@
 
 0.2. 도커 재시작하기
 - $ docker start ubuntu1
-- $ docker attach ubuntu1 또는 $ docker exec -it ubuntu1 bash
+- $ docker exec -it ubuntu1 bash : 컨테이너 실행함. 여러 터미널 창 띄워도 각자 따로 화면 보여줌.
+  - $ docker attach ubuntu1 :  컨테이너에 attach하여 실행화면 동시에 작동됨.
 
 0.3. 도커에 기타 패키지 설치
 - \# apt update : 먼저 업데이트해줘야 다음이 실행됨
