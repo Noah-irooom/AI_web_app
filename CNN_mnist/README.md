@@ -32,6 +32,12 @@
   - /User/user/AppData/Roaming/Docker 폴더 제거
     - Docker failed to initialize 해결법 아래 참고
     - https://stackoverflow.com/questions/68096476/docker-failed-to-initialize-on-windows 참고
+- 도커에서 로컬, 로컬에서 도커로 파일 이동 시키기
+  - 도커 환경에 파일을 로컬로 가져오는 방법
+    - docker cp CONTAINER-NAME:FILEPATH LOCALFILEPATH
+    - 예) docker cp C:\Users\user\Desktop\Pytho_to_JS\model.json ubuntu3:/sample/
+  - 로컬 환경에 도커 환경으로 파일 내보내는 방법
+    - docker cp LOCALFILEPATH CONTAINER-NAME:FILEPATH
 
 
 ## 1. CNN mnist 손글씨 숫자인식 예제
