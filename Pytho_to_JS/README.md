@@ -4,7 +4,7 @@
 ### 1. 코랩에서 파이썬 코드로 모델 학습 진행하기
 - https://www.tensorflow.org/tutorials/quickstart/beginner?hl=ko 참고
 - 해당 페이지의 코랩환경에 들어가서  mnist 데이터로 간단한 모델을 학습시킨다.
-- 코랩 ipynb파일은 현 디렉토리에 업로드 되어있다.
+- 코랩 ipynb파일은 현 디렉토리에 업로드 되어있다. -> 
 - Output으로 sample.h5 모델이 저장되는 이를 다운로드한다.
 
 ### 2. 코랩에서 파이썬 모델을 자바스크립트 모델로 변환하기
