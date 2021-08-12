@@ -17,13 +17,13 @@
 
 ### 3. Docker settings
 - 3.1. 이제 도커를 실행한다. 단, 포트포워딩이 된 도커를 실행.
-  - docker start ubuntu1
-  - docker exec -it ubuntu1 bash
+  - $ docker start ubuntu1
+  - $ docker exec -it ubuntu1 bash
 - 3.2. 기타 세팅 맞추기
-  - apt update
-  - apt install nodejs
-  - apt install npm
-  - npm install -g typescript
+  - \# apt update
+  - \# apt install nodejs
+  - \# apt install npm
+  - \# npm install -g typescript
 - 3.3. mkdir sample; cd sample  :  sample 디렉토리 생성후 들어가기
 - 3.4. npm init -y
   - package.json 생성됨
@@ -34,12 +34,12 @@
 
 ### 4. Load Model
 - https://www.tensorflow.org/js/guide/nodejs?hl=ko 참고
-- 4.1. nano sample.js : 생성하여 위 링크 코드 작성
+- 4.1. \# nano sample.js : 생성하여 위 링크 코드 작성
   - 단, 현재(2021.08.12)기준으로 공식 문서 코드가 오류가 뜸.
     - import * as tf from '@tensorflow/tfjs-node' 대신에  const tf = require('@tensorflow/tfjs') 사용
     - // callbacks: tf.node.tensorBoard('/tmp/fit_logs_1') : 텐서보드 콜백은 일단 주석처리하여 실행
 
-- 4.2. node sample.js 로 실행하기.
+- 4.2. \# node sample.js 로 실행하기.
 
   
 
