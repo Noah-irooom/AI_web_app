@@ -36,7 +36,7 @@
 - 도커에서 로컬, 로컬에서 도커로 파일 이동 시키기
   - 도커 환경에 파일을 로컬로 가져오는 방법
     - docker cp CONTAINER-NAME:FILEPATH LOCALFILEPATH
-    - 예) docker cp C:\Users\user\Desktop\Pytho_to_JS\model.json ubuntu3:/sample/
+    - 예) docker cp C:\Users\user\Desktop\Python_to_JS\model.json ubuntu3:/sample/
   - 로컬 환경에 도커 환경으로 파일 내보내는 방법
     - docker cp LOCALFILEPATH CONTAINER-NAME:FILEPATH
 
